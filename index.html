@@ -27,26 +27,33 @@
             margin-top: 20px;
             padding: 0 20px; /* Add some padding to the container */
         }
-        .button {
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #4CAF50;
-            color: white;
+        .shadow__btn {
+            padding: 10px 20px;
             border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            text-decoration: none;
+            font-size: 17px;
+            color: #fff;
+            border-radius: 7px;
+            letter-spacing: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.5s;
+            transition-property: box-shadow;
+            background: rgb(31, 196, 182);
+            box-shadow: 0 0 25px rgb(40, 165, 144);
             flex: 1; /* Allow buttons to grow */
             margin: 0 10px; /* Add margin for spacing */
         }
-        .button:first-child {
+        .shadow__btn:first-child {
             margin-left: 0; /* Remove left margin for the first button */
         }
-        .button:last-child {
+        .shadow__btn:last-child {
             margin-right: 0; /* Remove right margin for the last button */
         }
-        .button:hover {
-            background-color: #45a049;
+        .shadow__btn:hover {
+            box-shadow: 0 0 5px rgb(71, 199, 171),
+                        0 0 25px rgb(26, 211, 149),
+                        0 0 50px rgb(21, 185, 89),
+                        0 0 100px rgb(33, 172, 118);
         }
     </style>
 </head>
@@ -57,8 +64,8 @@
     <marquee>It was a website based on the job portal and resume builder, AI assistance.</marquee>
 
     <div class="buttons-container">
-        <a href="recruiter.html" class="button">Recruiter</a>
-        <a href="employee.html" class="button">Employee</a>
+        <button class="shadow__btn">Recruiter</button>
+        <button class="shadow__btn">Employee</button>
     </div>
 
 </body>
