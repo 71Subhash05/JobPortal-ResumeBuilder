@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Home Page</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #6a0dad, #000000); /* Gradient from purple to black */
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+            color: white; /* Change text color to white for better contrast */
+        }
+        h1 {
+            font-size: 80px;
+            margin-top: 50px;
+        }
+        /* === removing default button style ===*/
+        .button {
+            margin: 0;
+            height: auto;
+            background: transparent;
+            padding: 0;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* button styling */
+        .button {
+            --border-right: 6px;
+            --text-stroke-color: rgba(255,255,255,0.6);
+            --animation-color: #37FF8B;
+            --fs-size: 2em;
+            letter-spacing: 3px;
+            text-decoration: none;
+            font-size: var(--fs-size);
+            font-family: "Arial";
+            position: relative;
+            text-transform: uppercase;
+            color: transparent;
+            -webkit-text-stroke: 1px var(--text-stroke-color);
+        }
+
+        /* this is the text, when you hover on button */
+        .hover-text {
+            position: absolute;
+            box-sizing: border-box;
+            content: attr(data-text);
+            color: var(--animation-color);
+            width: 0%;
+            inset: 0;
+            border-right: var(--border-right) solid var(--animation-color);
+            overflow: hidden;
+            transition: 0.5s;
+            -webkit-text-stroke: 1px var(--animation-color);
+        }
+
+        /* hover */
+        .button:hover .hover-text {
+            width: 100%;
+            filter: drop-shadow(0 0 23px var(--animation-color));
+        }
+
+        /* Cards styling */
+        .cards {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 30px;
+            align-items: center; /* Center align cards */
+        }
+
+        .cards .red {
+            background-color: #f43f5e;
+        }
+
+        .cards .blue {
+            background-color: #3b82f6;
+        }
+
+        .cards .green {
+            background-color: #22c55e;
+        }
+
+        .cards .card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            height: 100px;
+            width: 250px;
+            border-radius: 10px;
+            color: white;
+            cursor: pointer;
+            transition: 400ms;
+        }
+
+        .cards .card p.tip {
+            font-size: 1em;
+            font-weight: 700;
+        }
+
+        .cards .card p.second-text {
+            font-size: .7em;
+        }
+
+        .cards .card:hover {
+            transform: scale(1.1, 1.1);
+        }
+
+        .cards:hover > .card:not(:hover) {
+            filter: blur(10px);
+            transform: scale(0.9, 0.9);
+        }
+    </style>
+</head>
+<body>
+
+    <h1>RECRUITER</h1>
+
+    <button class="button" data-text="Awesome">
+        <span class="actual-text">&nbsp;RECRUITER&nbsp;</span>
+        <span aria-hidden="true" class="hover-text">&nbsp;RECRUITER&nbsp;</span>
+    </button>
+
+    <p style="margin-top: 20px; font-size: 18px;">
+        Key Role of a Recruiter: A recruiter plays a crucial role in sourcing, screening, and selecting candidates for job openings in a company. They help ensure that the right talent is matched with the right opportunities.
+    </p>
+
+    <div class="cards">
+        <div class="card red" onclick="window.location.href='registration.html';">
+            <p class="tip">REGISTRATION</p>
+            <p class="second-text">Registration for Recruiter</p>
+        </div>
+        <div class="card blue" onclick="window.location.href='login.html';">
+            <p class=" tip">LOGIN</p>
+            <p class="second-text">Login for Recruiter</p>
+        </div>
+        <div class="card green" onclick="window.location.href='main.html';">
+            <p class="tip">BACK</p>
+            <p class="second-text">Back to Main Page</p>
+        </div>
+    </div>
+
+</body>
+</html>
