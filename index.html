@@ -9,6 +9,8 @@
             background-color: #F5E1A4;
             font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
         }
         h1 {
             font-size: 80px;
@@ -20,7 +22,10 @@
             margin-top: 10px;
         }
         .buttons-container {
+            display: flex; /* Use flexbox for layout */
+            justify-content: space-between; /* Space between buttons */
             margin-top: 20px;
+            padding: 0 20px; /* Add some padding to the container */
         }
         .button {
             padding: 15px 30px;
@@ -31,12 +36,17 @@
             cursor: pointer;
             border-radius: 5px;
             text-decoration: none;
+            flex: 1; /* Allow buttons to grow */
+            margin: 0 10px; /* Add margin for spacing */
+        }
+        .button:first-child {
+            margin-left: 0; /* Remove left margin for the first button */
+        }
+        .button:last-child {
+            margin-right: 0; /* Remove right margin for the last button */
         }
         .button:hover {
             background-color: #45a049;
-        }
-        .button + .button {
-            margin-left: 20px; /* Add space between buttons */
         }
     </style>
 </head>
