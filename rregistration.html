@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recruiter Registration</title>
+    <style>
+        /* Updated Background to Black & Purple */
+        body {
+            background: linear-gradient(to bottom, black, purple);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        /* Registration Box with Blue Background */
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 20px;
+            background: blue;
+            border-radius: 10px;
+            width: 320px;
+            color: white;
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px;
+        }
+
+        .input {
+            padding: 10px;
+            border-radius: 5px;
+            background-color: transparent;
+            color: white;
+            border: 2px solid #3b8df2;
+            font-size: 14px;
+        }
+
+        .input::placeholder {
+            color: #fff;
+        }
+
+        /* Change input background to white when user enters data */
+        .filled {
+            background-color: white;
+            color: black;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3b8df2;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background-color: #0077be;
+        }
+
+        #otpSection {
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <form class="form" id="registrationForm">
+            <h2>Recruiter Registration</h2>
+            <input placeholder="Full Name" class="input" id="name" type="text" required>
+            <input placeholder="Email ID" class="input" id="email" type="email" required oninput="showOTPButton()">
+            <button type="button" id="sendOtpBtn" onclick="sendOTP()" style="display: none;">Verify OTP</button>
+
+            <div id="otpSection">
+                <input placeholder="Enter OTP" class="input" id="otp" type="text" required>
+                <button type="button" onclick="verifyOTP()">Verify OTP</button>
+            </div>
+
+            <input placeholder="Phone Number" class="input" id="phone" type="tel" required>
+            <input placeholder="Date of Birth" class="input" id="dob" name="dob" type="date" required>
+            <input placeholder="Landmark" class="input" id="landmark" type="text" required>
+            <input placeholder="Password" class="input" id="password" type="password" required>
+            <input placeholder="Confirm Password" class="input" id="confirmPassword" type="password" required>
+            
+            <button id="updateBtn">Update</button>
+        </form>
+    </div>
+
+    <script>
+        let generatedOTP = "";
+
+        // Show OTP Button only when email is entered
+        function showOTPButton() {
+            let email = document.getElementById("email").value;
+            document.getElementById("sendOtpBtn").style.display = email ? "block" : "none";
+        }
+
+        // Send OTP
+        function sendOTP() {
+            let email = document.getElementById("email").value;
+            if (!email) {
+                alert("Please enter your Email ID.");
+                return;
+            }
+            generatedOTP = Math.floor(1000 + Math.random() * 9000);
+            alert("OTP Sent: " + generatedOTP);
+            document.getElementById("otpSection").style.display = "block";
+        }
+
+        // Verify OTP
+        function verifyOTP() {
+            let enteredOTP = document.getElementById("otp").value;
+            if (enteredOTP == generatedOTP) {
+                alert("OTP Verified Successfully!");
+                document.getElementById("otpSection").style.display = "none";
+            } else {
+                alert("Invalid OTP! Please try again.");
+            }
+        }
+
+        // Change input background to white when user enters data
+        document.querySelectorAll('.input').forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.add('filled');
+            });
+        });
+
+        // Validate form
+        document.getElementById("updateBtn").addEventListener("click", function(event) {
+            event.preventDefault();
+            let dob = document.getElementById("dob").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            // Validate age (greater than 1 year)
+            let dobDate = new Date(dob);
+            let today = new Date();
+            let age = today.getFullYear() - dobDate.getFullYear();
+            let monthDiff = today.getMonth() - dobDate.getMonth();
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < dobDate.getDate())) {
+                age--;
+            }
+            if (age < 1) {
+                alert("Date of Birth must be at least 1 year old.");
+                return;
+            }
+
+            // Validate password (9 characters, 1 letter, 1 number, 1 special character)
+            let passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{9,}$/;
+            if (!passwordRegex.test(password)) {
+                alert("Password must be at least 9 characters long, with at least one letter, one number, and one special character.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match!");
+                return;
+            }
+
+            alert("Registration Successful!");
+        });
+
+    </script>
+
+</body>
+</html>
